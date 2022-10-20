@@ -60,9 +60,11 @@ func (r repository) DeleteByID(id string) error {
 
 func (r repository) GetPhotoByUserID(userID string) (entity.Photo, error) {
 	var photo entity.Photo
-	err := r.db.Where("user_id = ?", userID).Find(&photo).Error
+
+	err := r.db.Preload("User").Where("user_id = ?", userID).First(&photo).Error
 	if err != nil {
 		return entity.Photo{}, err
 	}
+
 	return photo, nil
 }
