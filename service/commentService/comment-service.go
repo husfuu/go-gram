@@ -4,6 +4,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/husfuu/go-gram/dto"
 	"github.com/husfuu/go-gram/entity"
+	"github.com/husfuu/go-gram/helper"
 	"github.com/husfuu/go-gram/repository/commentRepository"
 	"github.com/husfuu/go-gram/validation"
 	"github.com/jinzhu/copier"
@@ -34,7 +35,8 @@ func (s service) Create(input dto.RequestComment) (dto.ResponseCreateComment, er
 	var comment entity.Comment
 	copier.Copy(&comment, &input)
 	comment.ID = uuid.New().String()
-
+	comment.CreatedAt = helper.TimeNowMillis
+	comment.UpdatedAt = helper.TimeNowMillis
 	newComment, err := s.repository.Create(comment)
 	if err != nil {
 		return dto.ResponseCreateComment{}, err
@@ -65,6 +67,8 @@ func (s service) Update(input dto.RequestCommentUpdate, commentID string) (dto.R
 	var comment entity.Comment
 	copier.Copy(&comment, &input)
 	comment.ID = commentID
+	comment.UpdatedAt = helper.TimeNowMillis
+
 	updatedComment, err := s.repository.Update(comment)
 
 	if err != nil {

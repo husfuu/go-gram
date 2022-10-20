@@ -6,6 +6,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/husfuu/go-gram/dto"
 	"github.com/husfuu/go-gram/entity"
+	"github.com/husfuu/go-gram/helper"
 	"github.com/husfuu/go-gram/repository/photoRepository"
 	"github.com/husfuu/go-gram/repository/socialmediaRepository"
 	"github.com/jinzhu/copier"
@@ -39,6 +40,8 @@ func (s service) Create(input dto.RequestSocialMedia) (dto.ResponseCreateSocialM
 	copier.Copy(&socialMedia, &input)
 
 	socialMedia.ID = uuid.New().String()
+	socialMedia.CreatedAt = helper.TimeNowMillis
+	socialMedia.UpdatedAt = helper.TimeNowMillis
 	newSocialMedia, err := s.socialMediaRepository.Create(*socialMedia)
 
 	if err != nil {
@@ -80,6 +83,7 @@ func (s service) Update(input dto.RequestSocialMedia) (dto.ResponseCreateSocialM
 	socialMedia := new(entity.SocialMedia)
 
 	copier.Copy(&socialMedia, &input)
+	socialMedia.UpdatedAt = helper.TimeNowMillis
 	updatedSocialMedia, err := s.socialMediaRepository.Update(*socialMedia)
 	if err != nil {
 		return dto.ResponseCreateSocialMedia{}, err
