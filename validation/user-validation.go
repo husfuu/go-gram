@@ -1,8 +1,6 @@
 package validation
 
 import (
-	"fmt"
-
 	"github.com/go-playground/validator/v10"
 	"github.com/husfuu/go-gram/dto"
 	repository "github.com/husfuu/go-gram/repository/userRepository"
@@ -25,7 +23,6 @@ func ValidateUserCreate(input dto.RequestRegister, r repository.UserRepository) 
 	if err != nil {
 		validationErrors := err.(validator.ValidationErrors)
 		for _, fieldError := range validationErrors {
-			fmt.Println("error ", fieldError.Field(), "on tag ", fieldError.Tag(), "with error ", fieldError.Error())
 			return fieldError
 		}
 	}
