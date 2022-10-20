@@ -1,7 +1,6 @@
 package socialmediaHandler
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -39,6 +38,7 @@ func (h handler) Create(ctx *gin.Context) {
 	response, err := h.service.Create(*input)
 	if err != nil {
 		ctx.JSON(helper.GetErrorStatusCode(err), helper.NewResponse(helper.GetErrorStatusCode(err), nil, err))
+		return
 	}
 
 	ctx.JSON(http.StatusCreated, helper.NewResponse(http.StatusCreated, response, nil))
@@ -46,7 +46,7 @@ func (h handler) Create(ctx *gin.Context) {
 
 func (h handler) GetSocialMedias(ctx *gin.Context) {
 	response, err := h.service.GetSocialMedias()
-	fmt.Println("ini response yg di dapet di handler", response)
+
 	if err != nil {
 		ctx.JSON(helper.GetErrorStatusCode(err), helper.NewResponse(helper.GetErrorStatusCode(err), nil, err))
 		return

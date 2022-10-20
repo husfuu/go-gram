@@ -32,8 +32,6 @@ func NewDbInit() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	fmt.Println(dsn)
-
 	err = db.AutoMigrate(
 		entity.User{},
 		entity.Photo{},

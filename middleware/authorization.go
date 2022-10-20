@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -19,9 +18,9 @@ func Authorization(c *gin.Context) {
 		return
 	}
 	bearerToken := strings.Replace(authorizationHeader, "Bearer ", "", -1)
-	fmt.Println(bearerToken)
+
 	id, err := auth.ParseToken(bearerToken)
-	fmt.Println(id)
+
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, helper.NewResponse(http.StatusUnauthorized, nil, err))
 		c.AbortWithStatus(http.StatusUnauthorized)

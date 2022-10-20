@@ -2,7 +2,6 @@ package auth
 
 import (
 	"errors"
-	"fmt"
 	"os"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -48,9 +47,8 @@ func ParseToken(tokeString string) (id string, err error) {
 
 		return []byte(os.Getenv("JWT_SECRET_KEY")), nil
 	})
-	fmt.Println("tokettt:", token)
+
 	if err != nil {
-		fmt.Println("error signatureee")
 		return "", err
 	}
 
@@ -64,7 +62,7 @@ func ParseToken(tokeString string) (id string, err error) {
 	}
 
 	userID := claims["user_id"].(string)
-	fmt.Println("udahhh lah: ", userID)
+
 	if err != nil {
 		return "", err
 	}

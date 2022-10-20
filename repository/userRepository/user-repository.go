@@ -42,7 +42,7 @@ func (r *repository) IsUsernameExist(username string) error {
 func (r *repository) IsEmailExist(email string) error {
 	var user entity.User
 	err := r.db.Where("email = ?", email).First(&user).Error
-	fmt.Println(err)
+
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			fmt.Println("error not found")

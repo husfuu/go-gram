@@ -47,6 +47,7 @@ func (h handler) GetPhotos(ctx *gin.Context) {
 
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, helper.NewResponse(http.StatusBadRequest, nil, err))
+		return
 	}
 	ctx.JSON(http.StatusOK, helper.NewResponse(http.StatusOK, response, nil))
 }
