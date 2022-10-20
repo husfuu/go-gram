@@ -5,6 +5,7 @@ import (
 	"github.com/husfuu/go-gram/dto"
 	"github.com/husfuu/go-gram/entity"
 	"github.com/husfuu/go-gram/repository/photoRepository"
+	"github.com/husfuu/go-gram/validation"
 	"github.com/jinzhu/copier"
 )
 
@@ -24,6 +25,11 @@ func NewPhotoService(repository photoRepository.PhotoRepository) PhotoService {
 }
 
 func (s service) Create(input dto.RequestPhoto) (dto.ResponseCreatePhoto, error) {
+	err := validation.ValidateCreatePhoto(input)
+	if err != nil {
+		return dto.ResponseCreatePhoto{}, err
+	}
+
 	photo := new(entity.Photo)
 	copier.Copy(&photo, &input)
 
@@ -63,6 +69,12 @@ func (s service) GetPhotos() ([]dto.ResponseGetPhoto, error) {
 }
 
 func (s service) Update(input dto.RequestPhoto, photoID string) (dto.ResponseUpdatePhoto, error) {
+	err := validation.ValidateUpdatePhoto(input, s.repository)
+
+	if err != nil {
+		return dto.ResponseUpdatePhoto{}, err
+	}
+
 	photo := new(entity.Photo)
 	copier.Copy(&photo, &input)
 	photo.ID = photoID

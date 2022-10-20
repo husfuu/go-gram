@@ -1,7 +1,7 @@
 package socialmediaRepository
 
 import (
-	"fmt"
+	"errors"
 
 	"github.com/husfuu/go-gram/entity"
 	"gorm.io/gorm"
@@ -12,6 +12,7 @@ type SocialMediaRepository interface {
 	GetSocialMedias() ([]entity.SocialMedia, error)
 	Update(socialMedia entity.SocialMedia) (entity.SocialMedia, error)
 	DeleteByID(id string) error
+	IsSocialMediaExist(id string) error
 }
 
 type repository struct {
@@ -25,7 +26,7 @@ func NewSocialMediaRepository(db *gorm.DB) SocialMediaRepository {
 func (r repository) Create(socialMedia entity.SocialMedia) (entity.SocialMedia, error) {
 	err := r.db.Debug().Create(&socialMedia).Error
 	if err != nil {
-		return entity.SocialMedia{}, err
+		return entity.SocialMedia{}, errors.New("user already have social media")
 	}
 	return socialMedia, nil
 }
@@ -36,7 +37,7 @@ func (r repository) GetSocialMedias() ([]entity.SocialMedia, error) {
 	if err != nil {
 		return []entity.SocialMedia{}, err
 	}
-	fmt.Println("ini sosmed dari repo", socialmedias)
+
 	return socialmedias, nil
 }
 
@@ -58,4 +59,18 @@ func (r repository) DeleteByID(id string) error {
 	socialMedia := entity.SocialMedia{}
 	socialMedia.ID = id
 	return r.db.Debug().First(&socialMedia).Where("id = ?", socialMedia.ID).Delete(&socialMedia).Error
+}
+
+func (r repository) IsSocialMediaExist(id string) error {
+	var socialmedia entity.SocialMedia
+
+	err := r.db.Where("id = ?", id).First(&socialmedia).Error
+
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return errors.New("social media doesn't exists")
+		}
+		return err
+	}
+	return nil
 }

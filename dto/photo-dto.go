@@ -5,7 +5,7 @@ import "time"
 type RequestPhoto struct {
 	ID       string `json:"id,omitempty"`
 	Caption  string `json:"caption,omitempty" validate:"required"`
-	PhotoURL string `json:"photo_url" validate:"required"`
+	PhotoURL string `json:"photo_url" validate:"required,url"`
 	Title    string `json:"title" validate:"required"`
 	UserID   string `json:"user_id,omitempty"`
 }

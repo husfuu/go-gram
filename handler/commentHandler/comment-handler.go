@@ -1,7 +1,6 @@
 package commentHandler
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -53,7 +52,7 @@ func (h handler) GetComments(ctx *gin.Context) {
 
 func (h handler) Update(ctx *gin.Context) {
 	commentParamID := ctx.Param("comment_id")
-	fmt.Println(commentParamID)
+
 	input := new(dto.RequestCommentUpdate)
 
 	userID := ctx.MustGet("user_id")

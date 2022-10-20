@@ -19,6 +19,7 @@ func Start() error {
 	NewRouter(r, db)
 
 	r.Use(gin.Recovery())
+	// r.Use(gin.SetMode("release"))
 
 	port := os.Getenv("PORT")
 

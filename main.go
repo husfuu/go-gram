@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-
+	// gin.SetMode(gin.ReleaseMode)
 	err := server.Start()
 	if err != nil {
 		log.Fatalln(err)

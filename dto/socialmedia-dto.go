@@ -4,9 +4,9 @@ import "time"
 
 type RequestSocialMedia struct {
 	ID             string `json:"id"`
-	Name           string `json:"name"`
-	SocialMediaUrl string `json:"social_media_url"`
-	UserID         string `json:"user_id"`
+	Name           string `json:"name" validate:"required"`
+	SocialMediaUrl string `json:"social_media_url" validate:"required"`
+	UserID         string `json:"user_id" validate:"required"`
 }
 
 type ResponseCreateSocialMedia struct {

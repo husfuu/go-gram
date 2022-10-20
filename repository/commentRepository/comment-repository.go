@@ -1,8 +1,6 @@
 package commentRepository
 
 import (
-	"fmt"
-
 	"github.com/husfuu/go-gram/entity"
 	"gorm.io/gorm"
 )
@@ -40,8 +38,6 @@ func (r repository) Get() ([]entity.Comment, error) {
 }
 
 func (r repository) Update(comment entity.Comment) (entity.Comment, error) {
-	fmt.Println("comment id::::: ", comment.ID)
-	fmt.Println("new message::::::::::::", comment.Message)
 	err := r.db.Debug().Where("id = ?", comment.ID).Updates(&comment).First(&comment).Error
 	if err != nil {
 		return entity.Comment{}, err

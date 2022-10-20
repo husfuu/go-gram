@@ -1,6 +1,8 @@
 package photoRepository
 
 import (
+	"errors"
+
 	"github.com/husfuu/go-gram/entity"
 	"gorm.io/gorm"
 )
@@ -10,6 +12,7 @@ type PhotoRepository interface {
 	GetPhotos() ([]entity.Photo, error)
 	Update(photo entity.Photo) (entity.Photo, error)
 	DeleteByID(id string) error
+	IsPhotoExist(id string) error
 	GetPhotoByUserID(id string) (entity.Photo, error)
 }
 
@@ -39,6 +42,20 @@ func (r repository) GetPhotos() ([]entity.Photo, error) {
 	return photos, nil
 }
 
+func (r repository) IsPhotoExist(id string) error {
+	var photo entity.Photo
+
+	err := r.db.Where("id = ?", id).First(&photo).Error
+
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return errors.New("photo doesn't exists")
+		}
+		return err
+	}
+	return nil
+}
+
 func (r repository) Update(photo entity.Photo) (entity.Photo, error) {
 	err := r.db.Debug().Where("id = ?", photo.ID).Updates(
 		entity.Photo{
@@ -46,6 +63,7 @@ func (r repository) Update(photo entity.Photo) (entity.Photo, error) {
 			Caption:  photo.Caption,
 			PhotoURL: photo.PhotoURL,
 		}).Error
+
 	if err != nil {
 		return entity.Photo{}, err
 	}

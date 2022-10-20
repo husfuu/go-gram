@@ -1,7 +1,6 @@
 package userHandler
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -87,7 +86,7 @@ func (h handler) Update(ctx *gin.Context) {
 
 func (h handler) Delete(ctx *gin.Context) {
 	id := ctx.MustGet("user_id")
-	fmt.Println("id dari token: ", id)
+
 	err := h.service.DeleteByID(id.(string))
 
 	if err != nil {
