@@ -4,6 +4,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/husfuu/go-gram/dto"
 	"github.com/husfuu/go-gram/entity"
+	"github.com/husfuu/go-gram/helper"
 	"github.com/husfuu/go-gram/repository/photoRepository"
 	"github.com/husfuu/go-gram/validation"
 	"github.com/jinzhu/copier"
@@ -34,6 +35,8 @@ func (s service) Create(input dto.RequestPhoto) (dto.ResponseCreatePhoto, error)
 	copier.Copy(&photo, &input)
 
 	photo.ID = uuid.New().String()
+	photo.CreatedAt = helper.TimeNowMillis
+	photo.UpdatedAt = helper.TimeNowMillis
 
 	newPhoto, err := s.repository.Create(*photo)
 
@@ -60,7 +63,6 @@ func (s service) GetPhotos() ([]dto.ResponseGetPhoto, error) {
 		tempPhoto.Title = photo.Title
 		tempPhoto.Caption = photo.Caption
 		tempPhoto.PhotoURL = photo.PhotoURL
-		//tempPhoto.CreatedAt = photo.CreatedAt
 		tempPhoto.User.Username = photo.User.Username
 		tempPhoto.User.Email = photo.User.Email
 		response = append(response, tempPhoto)
@@ -78,6 +80,7 @@ func (s service) Update(input dto.RequestPhoto, photoID string) (dto.ResponseUpd
 	photo := new(entity.Photo)
 	copier.Copy(&photo, &input)
 	photo.ID = photoID
+	photo.UpdatedAt = helper.TimeNowMillis
 
 	updatedPhoto, err := s.repository.Update(*photo)
 	if err != nil {

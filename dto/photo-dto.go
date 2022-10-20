@@ -1,7 +1,5 @@
 package dto
 
-import "time"
-
 type RequestPhoto struct {
 	ID       string `json:"id,omitempty"`
 	Caption  string `json:"caption,omitempty" validate:"required"`
@@ -11,11 +9,11 @@ type RequestPhoto struct {
 }
 
 type ResponseCreatePhoto struct {
-	ID       string    `json:"id,omitempty"`
-	Title    string    `json:"title"`
-	Caption  string    `json:"caption,omitempty"`
-	PhotoURL string    `json:"photo_url"`
-	CreateAt time.Time `json:"created_at,omitempty"`
+	ID        string `json:"id,omitempty"`
+	Title     string `json:"title"`
+	Caption   string `json:"caption,omitempty"`
+	PhotoURL  string `json:"photo_url"`
+	CreatedAt int64  `json:"created_at,omitempty"`
 }
 
 type ResponseGetPhoto struct {
@@ -27,14 +25,14 @@ type ResponseGetPhoto struct {
 		Username string `json:"username"`
 		Email    string `json:"email"`
 	}
-	CreatedAt time.Time `json:"created_at,omitempty"`
+	CreatedAt int64 `json:"created_at,omitempty"`
 }
 
 type ResponseUpdatePhoto struct {
-	ID        string    `json:"id,omitempty"`
-	Title     string    `json:"title"`
-	Caption   string    `json:"caption,omitempty"`
-	PhotoURL  string    `json:"photo_url"`
-	UserID    string    `json:"user_id,omitempty"`
-	UpdatedAt time.Time `json:"created_at,omitempty"`
+	ID        string `json:"id,omitempty"`
+	Title     string `json:"title"`
+	Caption   string `json:"caption,omitempty"`
+	PhotoURL  string `json:"photo_url"`
+	UserID    string `json:"user_id,omitempty"`
+	UpdatedAt int64  `json:"created_at,omitempty"`
 }

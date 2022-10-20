@@ -40,7 +40,8 @@ func (s *service) RegisterUser(input dto.RequestRegister) (dto.Response, error) 
 	user.Username = input.Username
 	user.Email = input.Email
 	user.Age = input.Age
-
+	user.CreatedAt = helper.TimeNowMillis
+	user.UpdatedAt = helper.TimeNowMillis
 	passwordHash, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.MinCost)
 	if err != nil {
 		return dto.Response{}, err
@@ -66,6 +67,10 @@ func (s *service) Login(input dto.RequestLogin) (dto.ResponseLogin, error) {
 	password := input.Password
 	user, err := s.repository.FindByEmail(email)
 
+	if err != nil {
+		return dto.ResponseLogin{}, err
+	}
+
 	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 	if err != nil {
 		return dto.ResponseLogin{}, helper.ErrorInvalidLogin
@@ -74,6 +79,10 @@ func (s *service) Login(input dto.RequestLogin) (dto.ResponseLogin, error) {
 	jwtService := auth.NewJWTService()
 
 	token, err := jwtService.GenerateToken(user.ID)
+
+	if err != nil {
+		return dto.ResponseLogin{}, err
+	}
 
 	response := dto.ResponseLogin{}
 	response.Token = token
@@ -93,7 +102,7 @@ func (s *service) Update(input dto.RequestRegister) (dto.Response, error) {
 	}
 
 	user.Password = string(passwordHash)
-
+	user.UpdatedAt = helper.TimeNowMillis
 	updatedUser, err := s.repository.Update(user)
 	if err != nil {
 		return dto.Response{}, err
