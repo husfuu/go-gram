@@ -2,9 +2,9 @@ package dto
 
 type RequestComment struct {
 	ID      string `json:"id"`
-	Message string `json:"message" validate:"required"`
-	UserID  string `json:"user_id" validate:"required"`
-	PhotoID string `json:"photo_id" validate:"required"`
+	Message string `json:"message" validate:"required" example:"your waifuu has been claimed"`
+	UserID  string `json:"user_id" validate:"required" example:"1"`
+	PhotoID string `json:"photo_id" validate:"required" example:"1"`
 }
 
 type RequestCommentUpdate struct {

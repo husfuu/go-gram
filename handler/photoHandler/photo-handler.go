@@ -24,6 +24,17 @@ func NewPhotoHandler(service photoService.PhotoService) PhotoHandler {
 	return &handler{service: service}
 }
 
+// Create a photo
+// @Tags photos
+// @Summary Create a new photo and store it in to database
+// @Description Create a new photo
+// @Accept json
+// @Produce json
+// @Param data body dto.RequestPhoto true "data"
+// @Success 201 {object} helper.Response{data=dto.ResponseCreatePhoto} "CREATED"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Failure 401 {object} helper.Response{errors=helper.ExampleErrorResponse} "Unauthorization"
+// @Router /photos [POST]
 func (h handler) Create(ctx *gin.Context) {
 	input := new(dto.RequestPhoto)
 	err := ctx.ShouldBind(input)
@@ -42,6 +53,18 @@ func (h handler) Create(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, helper.NewResponse(http.StatusCreated, response, nil))
 }
 
+// GetPhotos a photo
+// @Tags photos
+// @Summary Get all photos
+// @Description Get all photos
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Success 200 {object} helper.Response{data=[]dto.ResponseGetPhoto} "SUCCESS"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Failure 401 {object} helper.Response{errors=helper.ExampleErrorResponse} "Unauthorization"
+// @Failure 404 {object} helper.Response{errors=helper.ExampleErrorResponse} "Not Found"
+// @Router /photos [GET]
 func (h handler) GetPhotos(ctx *gin.Context) {
 	response, err := h.service.GetPhotos()
 
@@ -52,6 +75,19 @@ func (h handler) GetPhotos(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, helper.NewResponse(http.StatusOK, response, nil))
 }
 
+// Update a photo
+// @Tags photos
+// @Summary Update a photo
+// @Description Update a photo
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Param photoID path int true "ID of the photo"
+// @Param data body dto.RequestPhoto true "data"
+// @Success 200 {object} helper.Response{data=dto.ResponseUpdatePhoto} "SUCCESS"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Failure 401 {object} helper.Response{errors=helper.ExampleErrorResponse} "Unauthorization"
+// @Router /photos/:photoID [PUT]
 func (h handler) Update(ctx *gin.Context) {
 	input := new(dto.RequestPhoto)
 	err := ctx.ShouldBind(input)
@@ -72,6 +108,18 @@ func (h handler) Update(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, helper.NewResponse(http.StatusOK, response, nil))
 }
 
+// Delete a photo
+// @Tags photos
+// @Summary Delete a photo
+// @Description Delete a photo
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Param photoID path int true "ID of the photo"
+// @Success 200 {object} helper.Response "SUCCESS"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Failure 401 {object} helper.Response{errors=helper.ExampleErrorResponse} "Unauthorization"
+// @Router /photos/:photoID [DELETE]
 func (h handler) Delete(ctx *gin.Context) {
 	photoParamID := ctx.Param("photo_id")
 
