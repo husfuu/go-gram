@@ -24,6 +24,18 @@ func NewCommentHandler(service commentservice.CommentService) CommentHandler {
 	return &handler{service: service}
 }
 
+// Create a comment
+// @Tags comments
+// @Summary Create a comment
+// @Description Create a comment
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Param data body dto.RequestComment true "data"
+// @Success 201 {object} helper.Response{data=dto.ResponseCreateComment} "CREATED"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Failure 401 {object} helper.Response{errors=helper.ExampleErrorResponse} "Unauthorization"
+// @Router /comments [POST]
 func (h handler) Create(ctx *gin.Context) {
 	input := new(dto.RequestComment)
 	err := ctx.ShouldBind(input)
@@ -41,6 +53,17 @@ func (h handler) Create(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, helper.NewResponse(http.StatusCreated, response, nil))
 }
 
+// Get comments
+// @Tags comments
+// @Summary Get comments
+// @Description Get comments
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Success 200 {object} helper.Response{data=[]dto.ResponseGetComment} "OK"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Failure 401 {object} helper.Response{errors=helper.ExampleErrorResponse} "Unauthorization"
+// @Router /comments [GET]
 func (h handler) GetComments(ctx *gin.Context) {
 	responses, err := h.service.GetComments()
 	if err != nil {
@@ -50,6 +73,19 @@ func (h handler) GetComments(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, helper.NewResponse(http.StatusOK, responses, nil))
 }
 
+// Update a comment
+// @Tags comments
+// @Summary Update a comment
+// @Description Update a comment
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Param commentID path int true "ID of the comment"
+// @Param data body dto.RequestCommentUpdate true "data"
+// @Success 200 {object} helper.Response{data=dto.ResponseCreateComment} "OK"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Failure 401 {object} helper.Response{errors=helper.ExampleErrorResponse} "Unauthorization"
+// @Router /comments/:commentID [PUT]
 func (h handler) Update(ctx *gin.Context) {
 	commentParamID := ctx.Param("comment_id")
 
@@ -72,6 +108,18 @@ func (h handler) Update(ctx *gin.Context) {
 	ctx.JSON(http.StatusAccepted, helper.NewResponse(http.StatusAccepted, updatedComment, nil))
 }
 
+// Delete a comment
+// @Tags comments
+// @Summary Delete a comment
+// @Description Delete a comment
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Param commentID path int true "ID of the comment"
+// @Success 200 {object} helper.Response "OK"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Failure 401 {object} helper.Response{errors=helper.ExampleErrorResponse} "Unauthorization"
+// @Router /comments/:commentID [DELETE]
 func (h handler) Delete(ctx *gin.Context) {
 	commentParamID := ctx.Param("comment_id")
 

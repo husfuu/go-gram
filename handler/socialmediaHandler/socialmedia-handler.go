@@ -24,6 +24,17 @@ func NewSocialMediaHandler(service socialmediaService.SocialMediaService) Social
 	return &handler{service: service}
 }
 
+// Create new social media
+// @Tags socialmedias
+// @Summary Create new social media
+// @Description Create social media
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Param data body dto.RequestSocialMedia true "data"
+// @Success 201 {object} helper.Response{data=dto.ResponseCreateSocialMedia} "CREATED"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Router /socialmedias [POST]
 func (h handler) Create(ctx *gin.Context) {
 	input := new(dto.RequestSocialMedia)
 
@@ -44,6 +55,15 @@ func (h handler) Create(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, helper.NewResponse(http.StatusCreated, response, nil))
 }
 
+// Get all social medias
+// @Tags socialmedias
+// @Summary Get all social medias
+// @Description Get all social medias
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Success 200 {object} helper.Response{data=[]dto.ResponseGetSocialMedias} "SUCCESS"
+// @Router /socialmedias [GET]
 func (h handler) GetSocialMedias(ctx *gin.Context) {
 	response, err := h.service.GetSocialMedias()
 
@@ -54,6 +74,19 @@ func (h handler) GetSocialMedias(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, helper.NewResponse(http.StatusOK, response, nil))
 }
 
+// Update by id social media
+// @Tags socialmedias
+// @Summary Update by id social media
+// @Description Update by id social media
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Param socialmediaid path int true "ID of the social media"
+// @Param data body dto.RequestSocialMedia true "data"
+// @Success 200 {object} helper.Response{data=dto.ResponseCreateSocialMedia} "SUCCESS"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Failure 404 {object} helper.Response{errors=helper.ExampleErrorResponse} "Record not found"
+// @Router /socialmedias/:socialmediaid [PUT]
 func (h handler) Update(ctx *gin.Context) {
 	input := new(dto.RequestSocialMedia)
 
@@ -76,6 +109,18 @@ func (h handler) Update(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, helper.NewResponse(http.StatusCreated, response, nil))
 }
 
+// Delete by id social media
+// @Tags socialmedias
+// @Summary Delete by id social media
+// @Description Delete by id social media
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer + user token"
+// @Param socialmediaid path int true "ID of the social media"
+// @Success 200 {object} helper.Response "SUCCESS"
+// @Failure 400 {object} helper.Response{errors=helper.ExampleErrorResponse} "Bad Request"
+// @Failure 404 {object} helper.Response{errors=helper.ExampleErrorResponse} "Record not found"
+// @Router /socialmedias/:socialmediaid [DELETE]
 func (h handler) DeleteByID(ctx *gin.Context) {
 	socialMediaID := ctx.Param("social_media_id")
 

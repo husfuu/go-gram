@@ -1,0 +1,1058 @@
+basePath: /
+definitions:
+  dto.ExampleRequestUpdate:
+    properties:
+      email:
+        example: keikaruizawa@gmail.com
+        type: string
+      username:
+        example: keikaruizawa
+        type: string
+    type: object
+  dto.ExampleResponseDelete:
+    properties:
+      message:
+        example: your account has been successfully deleted
+        type: string
+    type: object
+  dto.RequestComment:
+    properties:
+      id:
+        type: string
+      message:
+        example: your waifuu has been claimed
+        type: string
+      photo_id:
+        example: "1"
+        type: string
+      user_id:
+        example: "1"
+        type: string
+    required:
+    - message
+    - photo_id
+    - user_id
+    type: object
+  dto.RequestCommentUpdate:
+    properties:
+      id:
+        type: string
+      message:
+        type: string
+      user_id:
+        type: string
+    required:
+    - message
+    - user_id
+    type: object
+  dto.RequestLogin:
+    properties:
+      email:
+        example: keikaruizawa@gmail.com
+        type: string
+      password:
+        example: password
+        minLength: 6
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  dto.RequestPhoto:
+    properties:
+      caption:
+        example: Looks my pretty waifu
+        type: string
+      id:
+        type: string
+      photo_url:
+        type: string
+      title:
+        example: Waifuu Photo
+        type: string
+      user_id:
+        type: string
+    required:
+    - caption
+    - photo_url
+    - title
+    type: object
+  dto.RequestRegister:
+    properties:
+      age:
+        example: 22
+        minimum: 8
+        type: integer
+      email:
+        example: keikaruizawa@gmail.com
+        type: string
+      password:
+        example: password
+        minLength: 6
+        type: string
+      username:
+        example: keikaruizawa
+        type: string
+    required:
+    - age
+    - email
+    - password
+    - username
+    type: object
+  dto.RequestSocialMedia:
+    properties:
+      name:
+        type: string
+      social_media_url:
+        type: string
+      user_id:
+        type: string
+    required:
+    - name
+    - social_media_url
+    - user_id
+    type: object
+  dto.Response:
+    properties:
+      age:
+        example: 22
+        type: integer
+      email:
+        example: keikaruizawa@gmail.com
+        type: string
+      id:
+        type: integer
+      username:
+        example: keikaruizawa
+        type: string
+    type: object
+  dto.ResponseCreateComment:
+    properties:
+      id:
+        type: string
+      message:
+        type: string
+      photoID:
+        type: string
+      user_id:
+        type: string
+    type: object
+  dto.ResponseCreatePhoto:
+    properties:
+      caption:
+        example: Looks my pretty waifu
+        type: string
+      created_at:
+        type: integer
+      id:
+        example: "1"
+        type: string
+      photo_url:
+        example: https://photos/waifuu.png
+        type: string
+      title:
+        example: Waifu photo
+        type: string
+    type: object
+  dto.ResponseCreateSocialMedia:
+    properties:
+      created_at:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      social_media_url:
+        type: string
+      updated_at:
+        type: integer
+      user_id:
+        type: string
+    type: object
+  dto.ResponseGetComment:
+    properties:
+      id:
+        type: string
+      message:
+        type: string
+      photo:
+        properties:
+          caption:
+            type: string
+          id:
+            type: string
+          photo_url:
+            type: string
+          title:
+            type: string
+          user_id:
+            type: string
+        type: object
+      photo_id:
+        type: string
+      user:
+        properties:
+          email:
+            type: string
+          id:
+            type: string
+          username:
+            type: string
+        type: object
+      user_id:
+        type: string
+    type: object
+  dto.ResponseGetPhoto:
+    properties:
+      caption:
+        example: Looks my pretty waifu
+        type: string
+      created_at:
+        type: integer
+      id:
+        example: "1"
+        type: string
+      photo_url:
+        example: https://photos/waifuu.png
+        type: string
+      title:
+        example: Waifu photo
+        type: string
+      user:
+        properties:
+          email:
+            example: keikaruizawa@gmail.com
+            type: string
+          username:
+            example: kaikaruizawa
+            type: string
+        type: object
+    type: object
+  dto.ResponseGetSocialMedias:
+    properties:
+      created_at:
+        type: integer
+      id:
+        example: "1"
+        type: string
+      name:
+        example: kei karuizawa
+        type: string
+      social_media_url:
+        example: https://twitter.com/keikaruizawa
+        type: string
+      updated_at:
+        type: integer
+      user:
+        properties:
+          id:
+            type: string
+          profile_image_url:
+            example: https://photos.com/keikaruizawa.png
+            type: string
+          username:
+            example: keikaruizawa
+            type: string
+        type: object
+      user_id:
+        example: "1"
+        type: string
+    type: object
+  dto.ResponseLogin:
+    properties:
+      token:
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        type: string
+    type: object
+  dto.ResponseUpdatePhoto:
+    properties:
+      caption:
+        type: string
+      created_at:
+        type: integer
+      id:
+        type: string
+      photo_url:
+        type: string
+      title:
+        type: string
+      user_id:
+        type: string
+    type: object
+  helper.ExampleErrorResponse:
+    properties:
+      email:
+        example: cannot be empty
+        type: string
+      message:
+        example: user bad request
+        type: string
+      password:
+        example: cannot be empty
+        type: string
+    type: object
+  helper.Response:
+    properties:
+      data: {}
+      error: {}
+      status:
+        type: integer
+    type: object
+info:
+  contact: {}
+  description: This is API for completing hacktiv8 final project
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: GoGram API
+  version: "1.0"
+paths:
+  /comments:
+    get:
+      consumes:
+      - application/json
+      description: Get comments
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dto.ResponseGetComment'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "401":
+          description: Unauthorization
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Get comments
+      tags:
+      - comments
+    post:
+      consumes:
+      - application/json
+      description: Create a comment
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RequestComment'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: CREATED
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ResponseCreateComment'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "401":
+          description: Unauthorization
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Create a comment
+      tags:
+      - comments
+  /comments/:commentID:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a comment
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID of the comment
+        in: path
+        name: commentID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "401":
+          description: Unauthorization
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Delete a comment
+      tags:
+      - comments
+    put:
+      consumes:
+      - application/json
+      description: Update a comment
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID of the comment
+        in: path
+        name: commentID
+        required: true
+        type: integer
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RequestCommentUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ResponseCreateComment'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "401":
+          description: Unauthorization
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Update a comment
+      tags:
+      - comments
+  /photos:
+    get:
+      consumes:
+      - application/json
+      description: Get all photos
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: SUCCESS
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dto.ResponseGetPhoto'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "401":
+          description: Unauthorization
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "404":
+          description: Not Found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Get all photos
+      tags:
+      - photos
+    post:
+      consumes:
+      - application/json
+      description: Create a new photo
+      parameters:
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RequestPhoto'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: CREATED
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ResponseCreatePhoto'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "401":
+          description: Unauthorization
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Create a new photo and store it in to database
+      tags:
+      - photos
+  /photos/:photoID:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a photo
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID of the photo
+        in: path
+        name: photoID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: SUCCESS
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "401":
+          description: Unauthorization
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Delete a photo
+      tags:
+      - photos
+    put:
+      consumes:
+      - application/json
+      description: Update a photo
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID of the photo
+        in: path
+        name: photoID
+        required: true
+        type: integer
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RequestPhoto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: SUCCESS
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ResponseUpdatePhoto'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "401":
+          description: Unauthorization
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Update a photo
+      tags:
+      - photos
+  /socialmedias:
+    get:
+      consumes:
+      - application/json
+      description: Get all social medias
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: SUCCESS
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dto.ResponseGetSocialMedias'
+                  type: array
+              type: object
+      summary: Get all social medias
+      tags:
+      - socialmedias
+    post:
+      consumes:
+      - application/json
+      description: Create social media
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RequestSocialMedia'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: CREATED
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ResponseCreateSocialMedia'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Create new social media
+      tags:
+      - socialmedias
+  /socialmedias/:socialmediaid:
+    delete:
+      consumes:
+      - application/json
+      description: Delete by id social media
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID of the social media
+        in: path
+        name: socialmediaid
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: SUCCESS
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "404":
+          description: Record not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Delete by id social media
+      tags:
+      - socialmedias
+    put:
+      consumes:
+      - application/json
+      description: Update by id social media
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID of the social media
+        in: path
+        name: socialmediaid
+        required: true
+        type: integer
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RequestSocialMedia'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: SUCCESS
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ResponseCreateSocialMedia'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "404":
+          description: Record not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Update by id social media
+      tags:
+      - socialmedias
+  /users:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ExampleResponseDelete'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "401":
+          description: Unauthorization
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "404":
+          description: Not Found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Delete user
+      tags:
+      - users
+    put:
+      consumes:
+      - application/json
+      description: Update user
+      parameters:
+      - description: Bearer + user token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ExampleRequestUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.Response'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "401":
+          description: Unauthorization
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Update user
+      tags:
+      - users
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      description: Login user
+      parameters:
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RequestLogin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ResponseLogin'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "404":
+          description: Record not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Login user
+      tags:
+      - users
+  /users/register:
+    post:
+      consumes:
+      - application/json
+      description: Register the new user
+      parameters:
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RequestRegister'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: CREATED
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.Response'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+        "409":
+          description: data conflict, like email already exist
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                errors:
+                  $ref: '#/definitions/helper.ExampleErrorResponse'
+              type: object
+      summary: Register new user
+      tags:
+      - users
+swagger: "2.0"

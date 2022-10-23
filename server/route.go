@@ -2,6 +2,7 @@ package server
 
 import (
 	"github.com/gin-gonic/gin"
+	_ "github.com/husfuu/go-gram/docs"
 	"github.com/husfuu/go-gram/handler/commentHandler"
 	"github.com/husfuu/go-gram/handler/photoHandler"
 	"github.com/husfuu/go-gram/handler/socialmediaHandler"
@@ -15,6 +16,8 @@ import (
 	"github.com/husfuu/go-gram/service/photoService"
 	"github.com/husfuu/go-gram/service/socialmediaService"
 	"github.com/husfuu/go-gram/service/userService"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"gorm.io/gorm"
 )
 
@@ -62,4 +65,8 @@ func NewRouter(r *gin.Engine, db *gorm.DB) {
 	commentRoute.GET("", commentHdlr.GetComments)
 	commentRoute.PUT("/:comment_id", commentHdlr.Update)
 	commentRoute.DELETE("/:comment_id", commentHdlr.Delete)
+
+	// API docs route
+	// url := ginSwagger.URL("http://localhost:8000/swagger/swagger.json")
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 }

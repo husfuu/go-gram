@@ -22,3 +22,10 @@ func NewResponse(status int, data interface{}, error error) *Response {
 		error,
 	}
 }
+
+// this is for swagger needs
+type ExampleErrorResponse struct {
+	Message  string `json:"message" example:"user bad request"`
+	Email    string `json:"email" example:"cannot be empty"`
+	Password string `json:"password" example:"cannot be empty"`
+}
