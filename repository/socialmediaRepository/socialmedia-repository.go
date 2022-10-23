@@ -2,6 +2,7 @@ package socialmediaRepository
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/husfuu/go-gram/entity"
 	"gorm.io/gorm"
@@ -65,7 +66,7 @@ func (r repository) IsSocialMediaExist(id string) error {
 	var socialmedia entity.SocialMedia
 
 	err := r.db.Where("id = ?", id).First(&socialmedia).Error
-
+	fmt.Println(socialmedia)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return errors.New("social media doesn't exists")
