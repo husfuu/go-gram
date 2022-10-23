@@ -2,8 +2,6 @@ package userRepository
 
 import (
 	"errors"
-	"fmt"
-
 	"github.com/husfuu/go-gram/entity"
 	"github.com/husfuu/go-gram/helper"
 	"gorm.io/gorm"
@@ -45,7 +43,6 @@ func (r *repository) IsEmailExist(email string) error {
 
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			fmt.Println("error not found")
 			return nil
 		}
 		return err
