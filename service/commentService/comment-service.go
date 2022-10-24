@@ -52,8 +52,7 @@ func (s service) GetComments() ([]dto.ResponseGetComment, error) {
 	if err != nil {
 		return []dto.ResponseGetComment{}, err
 	}
-	var response []dto.ResponseGetComment
-
+	response := []dto.ResponseGetComment{}
 	for _, comment := range comments {
 
 		var temp dto.ResponseGetComment

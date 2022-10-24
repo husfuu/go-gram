@@ -59,8 +59,8 @@ func (s service) GetSocialMedias() ([]dto.ResponseGetSocialMedias, error) {
 	if err != nil {
 		return []dto.ResponseGetSocialMedias{}, err
 	}
-	var response []dto.ResponseGetSocialMedias
 
+	response := []dto.ResponseGetSocialMedias{}
 	for _, socialMedia := range socialMedias {
 		// get photo by userID
 		photo, err := s.photoRepository.GetPhotoByUserID(socialMedia.UserID)
