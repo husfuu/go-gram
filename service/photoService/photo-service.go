@@ -55,8 +55,7 @@ func (s service) GetPhotos() ([]dto.ResponseGetPhoto, error) {
 	if err != nil {
 		return []dto.ResponseGetPhoto{}, nil
 	}
-
-	var response []dto.ResponseGetPhoto
+	response := []dto.ResponseGetPhoto{}
 	for _, photo := range photos {
 		tempPhoto := dto.ResponseGetPhoto{}
 		tempPhoto.ID = photo.ID
@@ -67,6 +66,7 @@ func (s service) GetPhotos() ([]dto.ResponseGetPhoto, error) {
 		tempPhoto.User.Email = photo.User.Email
 		response = append(response, tempPhoto)
 	}
+
 	return response, nil
 }
 
