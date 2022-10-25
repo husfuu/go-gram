@@ -26,6 +26,7 @@ go build
 ```
 
 ## ERD
+![drawSQL-export-2022-10-25_08_27](https://user-images.githubusercontent.com/70875733/197654868-fb9b6279-944e-45cb-aa61-49d7b198e2a6.png)
 
 ## Structure
 
