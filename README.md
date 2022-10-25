@@ -1,0 +1,77 @@
+# Go Gram
+
+A Simple RESTful API Instagram with Go
+
+It's my final project for Scalable Web Service with Golang Course - DTS Kominfo X hacktiv8id
+
+- [Demo](https://go-gram-production.up.railway.app)
+- [API Documentation](https://go-gram-production.up.railway.app/swagger/index.html)
+
+## Instalation & Run Locally
+
+```bash
+# Download this project
+go get github.com/husfuu/go-gram
+```
+
+Before running the API server, you must set up the database configuration with yours by creating an `.env` file. You can see the environment variables used in this project in the `.env.example` file in this repository.
+
+Then follow this steps:
+
+```bash
+# Build and Run
+cd go-gram
+go build
+./go-gram
+```
+
+## ERD
+
+## Structure
+
+```js
+go-gram
+├── auth
+├── config // database connection and migration
+├── dto // request and response schema and put some validation
+│   ├── comment-dto.go
+│   ├── photo-dto.go
+│   └── ...
+├── entity // schemas of database table
+│   ├── comment
+│   ├── photo
+│   └── ...
+├── handler // payload process from frontend
+│   ├── commentHandler
+│   │   └── comment-handler.go
+│   ├── photoHandler
+│   │   └── photo-handler.go
+│   └── ...
+├── helper
+│   ├── constant.go
+│   └── ...
+├── middleware
+│   └── authorization.go
+├── repository // query process to interact to database
+│   ├── commentRepository
+│   │   └── comment-repository.go
+│   └── ...
+├── server
+│   ├── route.go
+│   └── server.go
+├── service // implement business logic
+│   ├── commentService
+│   │   └── comment-service.go
+│   └── ...
+└── validation
+    ├── comment-validation.go
+    ├── photo-validation.go
+    └── ...
+```
+
+## TODO
+
+- [ ] Database seeding
+- [ ] Http Test
+- [x] API Doc
+- [ ] Implement soft delete
