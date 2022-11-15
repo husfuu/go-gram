@@ -2,7 +2,7 @@
 
 Instagram Clone RESTful API with Go
 
-It's my final project for Scalable Web Service with Golang Course - DTS Kominfo X hacktiv8id
+Final project for Scalable Web Service with Golang Course - DTS Kominfo X hacktiv8id
 
 - [Demo](https://go-gram-production.up.railway.app)
 - [API Documentation](https://go-gram-production.up.railway.app/swagger/index.html)
