@@ -1,6 +1,6 @@
 # Go Gram
 
-A Simple RESTful API Instagram with Go
+Instagram Clone RESTful API with Go
 
 It's my final project for Scalable Web Service with Golang Course - DTS Kominfo X hacktiv8id
 
