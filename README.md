@@ -1,4 +1,5 @@
 # Go Gram
+[![Go Report Card](https://goreportcard.com/badge/github.com/husfuu/go-gram)](https://goreportcard.com/report/github.com/husfuu/go-gram)
 
 Instagram Clone RESTful API with Go
 
