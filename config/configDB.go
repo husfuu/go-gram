@@ -29,6 +29,7 @@ func NewDbInit() (*gorm.DB, error) {
 	})
 
 	if err != nil {
+		fmt.Println("ini error: ", err)
 		return nil, err
 	}
 
@@ -78,7 +79,7 @@ func (dbConfig *dbConfig) GetDsn() string {
 		)
 	} else {
 		dsn = fmt.Sprintf(
-			"host=%s user=%s password=%s dbname=%s port=%s sslmode=require TimeZone=Asia/Jakarta",
+			"host=%s user=%s password=%s dbname=%s port=%s TimeZone=Asia/Jakarta",
 			dbConfig.Host,
 			dbConfig.User,
 			dbConfig.Password,
